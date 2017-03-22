@@ -106,30 +106,31 @@ class TestCalc(TestCase):
 
     def test_correct_derivative_string_and_string_(self):
         c = Calc()
-        first = "x^2"
-        second = "x"
-        self.assertRaises(Exceptions.NotAString, c.derivative, first, second)
+        first = "x**2"
+        second = "xss"
+        self.assertRaises(Exceptions.NotANumber, c.derivative, first, second)
 
     def test_correct_derivative_string_and_not_int_(self):
         c = Calc()
-        first = "x^2"
+        first = "x**2"
         second = 1.2
         self.assertRaises(Exceptions.NotInteger, c.derivative, first, second)
 
     def test_correct_derivative_string_and_less_than_zero_int_(self):
         c = Calc()
-        first = "x^2"
+        first = "x**2"
         second = -1
         self.assertRaises(Exceptions.NotHigherAndEqualZero, c.derivative, first, second)
 
     @patch('Calc.Calc.derivative')
     def test_correct_derivative_str_and_integer(self, mock):
-        mock.return_value = "2x"
+        mock.return_value = "2*x"
         c = Calc()
-        first = "x^2"
-        second = 2
-        expected_result = "2x"
+        first = "x**2"
+        second = 1
+        expected_result = "2*x"
         self.assertEqual(expected_result, c.derivative(first, second))
 
 if __name__ == "__main__":
     unittest.main()
+    
