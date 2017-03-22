@@ -17,7 +17,7 @@ class Calc(AbstractCalc):
     def derivative(self, function, degree):
         derivative_validate = Validator(0, degree, "derivative", function)
         derivative_validate.validate()
-        return diff(function, 'x**2', degree)
+        return diff(function, 'x', degree)
 
 
 
