@@ -18,6 +18,8 @@ class Validator(AbstractValidator):
                 raise Exceptions.NotHigherAndEqualZero
             if self._action=="derivative" and self._is_not_a_string(self._to_derivative_str):
                 raise Exceptions.NotAString
+            if self._action=="derivative" and not self._is_integer(self._to_validate_second):
+                raise Exceptions.NotInteger
             else:
                 return True
         else:
@@ -52,4 +54,7 @@ class Validator(AbstractValidator):
             return False
         else:
             return True
-
+	
+    @staticmethod
+    def _is_integer(number):
+        return isinstance(number, int)
